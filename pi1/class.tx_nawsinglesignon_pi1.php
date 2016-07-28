@@ -335,16 +335,7 @@ class tx_nawsinglesignon_pi1 extends tslib_pibase {
 		foreach ($tablefields as $i) {
 			if ($GLOBALS['TSFE']->fe_user->user[$i['Field']] AND in_array($i['Field'], $fields_enable)) {
 				if ($i['Field'] == 'usergroup') {
-					$groups = explode(',', $GLOBALS['TSFE']->fe_user->user[$i['Field']]);
-					$groupsdata_splitchar = '';
-					$userdata_tmp .= $userdata_splitchar . $i['Field'] . '=';
-					foreach ($groups as $j) {
-						$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'fe_groups', 'uid=' . intval($j));
-						while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
-							$userdata_tmp .= $groupsdata_splitchar . $row['title'];
-						}
-						$groupsdata_splitchar = ',';
-					}
+					$userdata_tmp .= $userdata_splitchar . $i['Field'] . '=' . $this->getUsergroupsForUserdata();
 				} else {
 					$userdata_tmp .= $userdata_splitchar . $i['Field'] . '=' . $GLOBALS['TSFE']->fe_user->user[$i['Field']];
 				}
@@ -353,6 +344,44 @@ class tx_nawsinglesignon_pi1 extends tslib_pibase {
 		}
 
 		return $userdata_tmp;
+	}
+
+	/**
+	 * Returns a comma seperated list of usergroups that the current user belongs to
+	 * The usergroups returned depend on the flexform setting submit_usergroups_mode.
+	 * There are three possibilities:
+	 * - default: the classic mode: the titles of the usergroups (without subgroups) are returned
+	 * - groupdata_by_title: the titles of the usergroups (including subgroups) are returned
+	 * - groupdata_by_uid: the titles of the usergroups (including subgroups) are returned
+	 *
+	 * @return string comma seperated list of titles or uids of the usergroups the current user belongs to
+	 * @author Alexander Stehlik <alexander.stehlik.deleteme@googlemail.com>
+	 */
+	protected function getUsergroupsForUserdata() {
+
+		$usergroupsMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'submit_usergroups_mode', 'sDEF3');
+		$usergroups = array();
+
+		switch ($usergroupsMode) {
+
+			case 'groupdata_by_title':
+				$usergroups = $GLOBALS['TSFE']->fe_user->groupData['title'];
+				break;
+			case 'groupdata_by_uid':
+				$usergroups = $GLOBALS['TSFE']->fe_user->groupData['uid'];
+				break;
+			default:
+				$groups = explode(',', $GLOBALS['TSFE']->fe_user->user['usergroup']);
+				foreach ($groups as $groupUID) {
+					$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'fe_groups', 'uid=' . intval($groupUID));
+					while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
+						$usergroups[] = $row['title'];
+					}
+				}
+				break;
+		}
+
+		return implode(',', $usergroups);
 	}
 
 	/**

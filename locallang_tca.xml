@@ -34,6 +34,10 @@
             <label index="naw_single_signon.pi_flexform.forcessl">Require SSL</label>
             <label index="naw_single_signon.pi_flexform.flag_create">Allow to create the user in tpa</label>
             <label index="naw_single_signon.pi_flexform.enable_fields">FE-Userdata that should be updated or commited to the tpa</label>
+            <label index="naw_single_signon.pi_flexform.submit_usergroups_mode">Group data that will be submitted to the tpa</label>
+            <label index="naw_single_signon.pi_flexform.submit_usergroups_mode.I.0">Flat group title list (no subgroups included, classic mode)</label>
+            <label index="naw_single_signon.pi_flexform.submit_usergroups_mode.I.1">Full group title list (including subgroups)</label>
+            <label index="naw_single_signon.pi_flexform.submit_usergroups_mode.I.2">Full group uid list (including subgroups)</label>
             <label index="naw_single_signon.pi_flexform.usermapping">Select a Usermapping Table</label>
             <label index="naw_single_signon.pi_flexform.no_usermapping">No Usermapping</label>
         </languageKey>
