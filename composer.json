@@ -1,0 +1,14 @@
+{
+    "name": "intera-typo3-extension/naw-single-signon",
+    "description": "The TYPO3 Single Sign-On (SSO) extension provides seamless integration of third-party (i.e. non-TYPO3) applications (TPAs) into TYPO3. This includes end-user access to TPAs with no additional logon.",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0+",
+    "require": {
+        "php": ">=5.5.0",
+        "typo3/cms-core": "^6.2"
+    },
+    "replace": {
+        "naw_single_signon": "self.version",
+        "typo3-ter/naw-single-signon": "self.version"
+    }
+}
