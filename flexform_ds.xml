@@ -21,6 +21,16 @@
 							</config>
 						</TCEforms>
 					</tpaid>
+					<configname>
+						<TCEforms>
+							<label>LLL:EXT:naw_single_signon/locallang_tca.php:naw_single_signon.pi_flexform.configname</label>
+							<config>
+								<type>input</type>
+								<size>25</size>
+								<eval>required</eval>
+							</config>
+						</TCEforms>
+					</configname>
 					<targeturl>
 						<TCEforms>
 							<label>LLL:EXT:naw_single_signon/locallang_tca.php:naw_single_signon.pi_flexform.targeturl</label>

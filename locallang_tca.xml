@@ -12,6 +12,7 @@
             <label index="naw_single_signon">Single Sign-On</label>
             <label index="naw_single_signon.pi_flexform.sheet_general">General</label>
             <label index="naw_single_signon.pi_flexform.tpaid">Third Party Application ID (as configured in Trust Agent)</label>
+            <label index="naw_single_signon.pi_flexform.configname">Config name (config.[name].php is used for reading config values)</label>
             <label index="naw_single_signon.pi_flexform.targeturl">Trust Agent URL</label>
             <label index="naw_single_signon.pi_flexform.linkdescription">Link Display Text  (for &quot;Link in Content&quot;)</label>
             <label index="naw_single_signon.pi_flexform.style">Style</label>
